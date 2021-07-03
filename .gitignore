@@ -2,3 +2,6 @@ structure/www/*
 OSSKeepserver
 notes.txt
 .vscode/
+extension.crx
+extension.pem
+structure/caddy_linux_amd64
