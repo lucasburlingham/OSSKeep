@@ -3,22 +3,29 @@ PORT=2062
 SRC_FOLDER=src
 BIN_FOLDER=bin
 EXEC_NAME=OSSKeepserver
-CHROMEIUM_RT=/usr/bin/vivaldi
+CHROMEIUM_RT=vivaldi --pack-extension=extension --no-message-box --disable-gpu
 CRX_NAME=$(EXEC_NAME).zip
 EX_SRC_FOLDER=extension
-CADDY_RT=structure/caddy_linux_amd64 --file-server
+SUBDIRS:=cache
 
 server: $(SRC_FOLDER)/server.cpp
-	mkdir $(BIN_FOLDER)/
 	$(CC) -std=c++11 -pthread -o $(BIN_FOLDER)/$(EXEC_NAME) $(SRC_FOLDER)/server.cpp
 
-run: 
-	websocketd --port=$(PORT) ./$(BIN_FOLDER)/$(EXEC_NAME) & $(CADDY_RT)
+run:
+	killall websocketd &
+	killall ran_linux_amd64 &
+	websocketd --port=$(PORT) ./$(BIN_FOLDER)/$(EXEC_NAME) &
+	sudo cache/ran_linux_amd64 -port 80 -root cache/www
+
+stop: 
+	sudo killall websocketd &
+	sudo killall caddy_linux_amd64
 
 extensions: extension/
-	zip -r $(CRX_NAME) $(EX_SRC_FOLDER)
-	$(CHROMEIUM_RT) --pack-extension=$(CURDIR)/$(EX_SRC_FOLDER) --disable-gpu
-	rm $(CRX_NAME)
+	$(CHROMEIUM_RT) --pack-extension=extension --no-message-box
 
 clean: 
-	rm -r $(BIN_FOLDER)
+	rm bin/OSSKeepserver
+
+clearcache: cache/www/
+	rm -r cache/www/*

@@ -1,0 +1,10 @@
+p {
+  padding: 0.5em;
+  margin: 4px;
+  align-items: center;
+}
+
+html {
+  height: 75rem;
+  width: 55rem;
+}
