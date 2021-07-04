@@ -1,24 +1,24 @@
 function sendLocation() {
-    chrome.tabs.query({
-        currentWindow: true,
-        active: true
-    }, function (tabs) {
-        console.log(tabs[0].url);
-        alert(tabs[0].url)
-    });
+    var query = {
+        active: true,
+        currentWindow: true
+    };
+
+    chrome.tabs.query(query, callback);
+
     console.clear();
     var ws = new WebSocket('ws://localhost:2062/');
     console.log('Opening Heartbeat:');
     stats(ws);
 
-    ws.onopen = function (event) {
+    ws.onopen = function (event, url) {
         stats(ws);
         console.log("Socket Opened.");
-        console.log('Archiving Page located at: ' + tabs[0].url);
+        console.log('Archiving Page located at: ' + url);
         console.log('Ending Heartbeat:');
         stats(ws);
-        ws.send(tabs[0].url);
-        console.log('Archiving job sent to node at: ' + ws.url);
+        ws.send(url);
+        console.log('Archiving job sent to backend at: ' + ws.url);
         ws.onmessage = function (event) {
             console.log("Archive job done.");
             ws.onmessage = function (event) {
@@ -50,4 +50,9 @@ function stats(ws) {
     }
 
     console.log("Socket Protocol: " + ws.protocol);
+}
+
+function callback(tabs) {
+    var url = tabs[0].url;
+    console.log(url);
 }

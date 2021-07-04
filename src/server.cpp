@@ -14,7 +14,7 @@ void read()
         std::cin >> sin;
         std::lock_guard<std::mutex> lock{msg_mutex};
         msg_input = sin;
-        std::string get_data = "cd structure/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input + "&& cd ../..";
+        std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input + "&& cd ../..";
         const char *command = get_data.c_str();
         std::system(command);
     }

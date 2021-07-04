@@ -3,14 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <p class="display-6 mx-auto">OSSKeep</p>
-    <button onclick="sendLocation()" class="btn btn-primary mx-auto">Archive</button>
+    <div class="container-fluid">
+        <div class="row">
+            <p class="h2">OSSKeep</p>
+            <button onclick="sendLocation()" class="btn btn-primary">Archive Page</button>
+            <p>
+                tab url:
+
+                <div id="url"></div>
+            </p>
+        </div>
+    </div>
+    </div>
     <script src="js/socket.js"></script>
+
 </body>
 
 </html>
