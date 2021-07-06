@@ -13,10 +13,13 @@ void read()
         std::string sin;
         std::cin >> sin;
         std::lock_guard<std::mutex> lock{msg_mutex};
+
         msg_input = sin;
-        std::string get_data_test = "echo " + msg_input + ">> logtest";
+
+        std::string get_data_test = "echo " + msg_input + " >> logtest";
         const char *command_test = get_data_test.c_str();
         std::system(command_test);
+
         std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input + "&& cd ../..";
         const char *command = get_data.c_str();
         std::system(command);
