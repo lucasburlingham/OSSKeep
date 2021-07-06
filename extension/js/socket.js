@@ -1,11 +1,6 @@
-function sendLocation() {
-    var query = {
-        active: true,
-        currentWindow: true
-    };
+function sendLocation(url) {
 
-    chrome.tabs.query(query, callback);
-
+    url = "https://google.com";
     console.clear();
     var ws = new WebSocket('ws://localhost:2062/');
     console.log('Opening Heartbeat:');
@@ -50,9 +45,4 @@ function stats(ws) {
     }
 
     console.log("Socket Protocol: " + ws.protocol);
-}
-
-function callback(tabs) {
-    var url = tabs[0].url;
-    console.log(url);
 }

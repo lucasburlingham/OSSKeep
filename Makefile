@@ -11,10 +11,8 @@ EX_SRC_FOLDER=extension
 server: $(SRC_FOLDER)/server.cpp
 	$(CC) -std=c++11 -pthread -o $(SRV_PATH) $(SRC_FOLDER)/server.cpp
 
-run:
+runsocket:
 	killall websocketd &
-	killall ran_linux_amd64 &
-	sudo $(RAN_EXEC) -port 80 -root cache/www &
 	$(WS_PATH) --port=$(PORT) $(SRV_PATH) --loglevel=error &
 
 stop: 
@@ -29,3 +27,7 @@ clean:
 
 clearcache: cache/www/
 	rm -r cache/www/*
+
+make runweb:
+	sudo $(RAN_EXEC) -port 80 -root cache/www &
+	killall ran_linux_amd64 &
