@@ -4,28 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css">s -->
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
-            <p class="h2">OSSKeep</p>
-            <button onclick="sendLocation()" class="btn btn-primary">Archive Page</button>
+            <div class="col">
+            </div>
+            <div class="col">
+                <small>Enter the URL to archive:</small>
+                <br>
+                <input type="url" name="url" id="url_input">
+                <br>
+                <button onclick="sendLocation()" class="btn btn-primary">Archive Page</button>
+                <p class="h2">OSSKeep</p>
+            </div>
+            <div class="col"></div>
         </div>
     </div>
     </div>
     <!-- <script src="js/socket.js"></script> -->
     <script>
-        function sendLocation(url) {
+        function sendLocation() {
 
-            url = "https://google.com";
             console.clear();
             var ws = new WebSocket('ws://localhost:2062/');
             console.log('Opening Heartbeat:');
             stats(ws);
 
-            ws.onopen = function (event, url) {
+            ws.onopen = function () {
+                url = document.getElementById("url_input").value;
                 stats(ws);
                 console.log("Socket Opened.");
                 console.log('Archiving Page located at: ' + url);

@@ -16,11 +16,7 @@ void read()
 
         msg_input = sin;
 
-        std::string get_data_test = "echo " + msg_input + " >> logtest";
-        const char *command_test = get_data_test.c_str();
-        std::system(command_test);
-
-        std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input + "&& cd ../..";
+        std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input + " && cd ../.. && notify-send 'hi'";
         const char *command = get_data.c_str();
         std::system(command);
     }
