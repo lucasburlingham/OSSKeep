@@ -16,7 +16,7 @@ void read()
 
         msg_input = sin;
 
-        std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet " + msg_input;
+        std::string get_data = "cd cache/www && wget --page-requisites --adjust-extension --span-hosts --convert-links --quiet --recursive  --no-cache" + msg_input;
         const char *command = get_data.c_str();
         std::system(command);
     }

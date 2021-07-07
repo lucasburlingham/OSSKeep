@@ -1,7 +1,6 @@
 var btn = document.createElement("p");
 btn.innerHTML = "<button class=\"btn btn-primary\" style=\"width:100%;position:relative;z-index:2;color:#fff;background-color:#0d6efd;border-color:#0d6efd;border-radius:.25rem;padding-top:10px;padding-bottom:10px\" id=\"archive_page_1\">Archive Page</button>";
 document.body.appendChild(btn);
-document.getElementById("archive_page_1").textContent("Sent!");
 document.getElementById("archive_page_1").addEventListener("click", function () {
     console.clear();
     var ws = new WebSocket("ws://localhost:2062/");
