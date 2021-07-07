@@ -43,6 +43,7 @@
                 ws.send(url);
                 console.log('Archiving job sent to backend at: ' + ws.url);
                 ws.onmessage = function (event) {
+                    alert("Archiving job done.");
                     console.log("Archive job done.");
                     ws.onmessage = function (event) {
                         console.log("Done.");

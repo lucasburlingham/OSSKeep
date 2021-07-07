@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export CACHE_LOCATION=$("read ")
+echo $CACHE_LOCATION

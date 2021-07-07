@@ -1,27 +1,25 @@
-var btn = document.createElement("button");
-btn.innerHTML = "Archive Page";
-btn.className = "btn btn-primary";
-btn.setAttribute('onclick', 'sendLocation()');
+var btn = document.createElement("p");
+btn.innerHTML = "<button class=\"btn btn-primary\" style=\"width:100%;position:relative;z-index:2;color:#fff;background-color:#0d6efd;border-color:#0d6efd;border-radius:.25rem;padding-top:10px;padding-bottom:10px\" id=\"archive_page_1\">Archive Page</button>";
 document.body.appendChild(btn);
-
-function sendLocation() {
-
+document.getElementById("archive_page_1").textContent("Sent!");
+document.getElementById("archive_page_1").addEventListener("click", function () {
     console.clear();
-    var ws = new WebSocket('ws://localhost:2062/');
-    console.log('Opening Heartbeat:');
+    var ws = new WebSocket("ws://localhost:2062/");
+    console.log("Opening Heartbeat:");
     stats(ws);
 
     ws.onopen = function (event) {
         url = location.href;
         stats(ws);
         console.log("Socket Opened.");
-        console.log('Archiving Page located at: ' + url);
-        console.log('Ending Heartbeat:');
-        stats(ws);
+        console.log("Archiving Page located at: " + url);
         ws.send(url);
-        console.log('Archiving job sent to backend at: ' + ws.url);
+        console.log("Archiving job sent to backend at: " + ws.url);
+        console.log("Ending Heartbeat:");
+        stats(ws);
         ws.onmessage = function (event) {
             console.log("Archive job done.");
+            alert("Archive job done.");
             ws.onmessage = function (event) {
                 console.log("Done.");
             }
@@ -38,7 +36,7 @@ function sendLocation() {
         stats(ws);
     }
 
-}
+});
 
 function stats(ws) {
 
