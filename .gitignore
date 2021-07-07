@@ -1,4 +1,4 @@
-structure/www/*
+cache/*
 OSSKeepserver
 notes.txt
 .vscode/
@@ -6,3 +6,4 @@ extension.crx
 extension.pem
 structure/caddy_linux_amd64
 bin/ran_linux_amd64
+logtest
