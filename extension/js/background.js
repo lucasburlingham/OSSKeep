@@ -10,7 +10,7 @@ document.getElementById("archive_page_1").addEventListener("click", function () 
     ws.onopen = function (event) {
         url = location.href;
         stats(ws);
-        console.log("Socket Opened.");
+        console.log("Socket Opened...");
         console.log("Archiving Page located at: " + url);
         ws.send(url);
         console.log("Archiving job sent to backend at: " + ws.url);
